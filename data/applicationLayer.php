@@ -3,7 +3,6 @@
 	header('Content-type: application/json');
 	require_once __DIR__ . '/dataLayer.php';
 	$action = $_POST["action"];
-	
 
 	switch ($action) {
 		case 'LOGIN': verifyLogin(); 
@@ -68,10 +67,10 @@
 
 	function verifyRegistration(){
 
-        echo("debug");
+        echo "debug";
 		$userFirstName = $_POST["firstname"];
 		$userLastName = $_POST["lastname"];
-        $userName = $_POST["username"]
+        $userName = $_POST["username"];
 		$userPassword = $_POST["password"];
 		$userEmail = $_POST["email"];
 		$userCountry = $_POST["country"];
@@ -81,6 +80,8 @@
         $userHeight = $_POST["height"];
         $userActivity = $_POST["activity"];
         $userGoal = $_POST["goal"];
+
+        echo ($userActivity = $_POST["activity"]);
 
 		$result = registrationAction($userFirstName, $userLastName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
 

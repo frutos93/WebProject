@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LAB2</title>
+    <title>Register</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="css/homeStyles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dropkick.css"/>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/register.js"></script>
+    <script src="js/dropkick.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
     <div  class="logo">
-        <img src="img/logo5.png" id="logo">
+        <img src="img/logo3.png" class="logo2"id="logo">
     </div>
+
     <div class="register_form">
-        <div class="formElement">
+
+        <div class="formElement2">
             <input id= "firstName"  type="text" placeholder="First Name"  />
         </div>
-        <div class="formElement">
-        <input id= "lastName"  type="text" placeholder="Last Name"  />
+        <div class="formElement2">
+            <input id= "lastName"  type="text" placeholder="Last Name"  />
         </div>
-        <div class="formElement">Gender
+        <div class="formElement2">Gender
             <input id= "gender1"  type="radio" name= "gender" value= "Male"/>Male <br>
             <input id= "gender2"  type="radio" name= "gender" value= "Female"/>Female<br>    
         </div>
-        <div  class="formElement">
+        <div  class="formElement2">
             <input id="email"  type="text" placeholder="Email" />
         </div>
-        <div  class="formElement">
+        <div  class="formElement2">
             <input id="username"  type="text" placeholder="Username" />
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <input id= "password"  type="password" placeholder="Password"  />
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <input id= "passwordConf"  type="password" placeholder="Password Confirmation"  />
-        </div>
-        <div class="formElement">
 			<p>Country</p>
-			<select id= "country">
+			<select id= "country" name="default" class="default">
 				<option value="0"> Select a country.. </option>
 				<option value="1"> Mexico </option>
 				<option value="2"> France </option>
@@ -54,17 +57,16 @@
 				<option value="14"> South Africa </option>
 				<option value="15"> Venezuela </option>
 			</select>
-        </div>
-        <div class="formElement">
+        <div class="formElement2">
             <input id= "age"  type="number" min= "15" max= "99" placeholder="Age"  />
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <input id= "weight"  type="number" min= "40" max= "200" placeholder="Weight"  />
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <input id= "hieght"  type="number" min= "100" max="250" placeholder="height"  />
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <p>Activity</p>
             <select id="#activity">
             <option value = "0"> Select a Physical Activity</option>
@@ -73,7 +75,7 @@
             <option value = "Swimming">Swimming</option>
             </select>
         </div>
-        <div class="formElement">
+        <div class="formElement2">
             <p>Goal</p>
             <select id="#goal">
             <option value = "0"> Select your Goal</option>
