@@ -26,7 +26,7 @@
 
 		if ($conn != null) {
 			
-			$sql = "SELECT * FROM Users WHERE userName ='$userName' AND passWord = '$userPassword'";
+			$sql = "SELECT * FROM users WHERE username ='$userName' AND passwrd = '$userPassword'";
 
 
 			$result = $conn -> query($sql);
@@ -46,16 +46,15 @@
 
 	}
 
-	function registrationAction($userFirstName, $userLastName, $userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal){
+	function registrationAction($userFirstName, $userLastName,$userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal){
 
-        echo("debug");
+ 
 		$conn = connect();
 		if ($conn != null) {
-
 			$sql =  "INSERT INTO users (username, passwrd,fName,lName,email,country,gender,age,weight,height,activity,goal) VALUES ('$userName', '$userPassword', '$userFirstName', '$userLastName', '$userEmail', '$userCountry', '$userGender', '$userAge', '$userWeight', '$userHeight', '$userActivity', '$userGoal')";
 
 		
-			$result = $connec -> query($sql); 
+			$result = $conn -> query($sql); 
 
 			if($result === TRUE) { 
 

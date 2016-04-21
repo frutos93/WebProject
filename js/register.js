@@ -66,7 +66,7 @@ $(document).ready(function(){
             return
         }
         
-        if( $("#activity").val() == "0"){
+        if( $("#activity option:selected").val() == "0"){
             alert("Type your physical activity");
             return;
         }
@@ -91,13 +91,14 @@ $(document).ready(function(){
             age : $("#age").val(),
             weight : $("#weight").val(),
             height : $("#height").val(),
-            activity : $("#activity").val(),
-            goal : $("#goal").val(),
+            activity : $("#activity option:selected").text(),
+            goal : $("#goal option:selected").text(),
             action: "REGISTER",
         }
         
+        
         $.ajax({
-            url: "/data/applicationLayer.php",
+            url: "data/applicationLayer.php",
             type: "POST",
             data: dataToRegister,
             dataType: "json",

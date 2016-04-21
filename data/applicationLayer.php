@@ -3,7 +3,6 @@
 	header('Content-type: application/json');
 	require_once __DIR__ . '/dataLayer.php';
 	$action = $_POST["action"];
-	
 
 	switch ($action) {
 		case 'LOGIN': verifyLogin(); 
@@ -29,8 +28,6 @@
 
 		$userName = $_POST["username"]; 
 		$userPassword = $_POST["password"];
-		$rememberCookie = $_POST["cookie"];
-
 		
 		$result = loginAction($userName, $userPassword); 
 		
@@ -42,19 +39,18 @@
 
 			//Starting the session 
 			session_start();
-			$_SESSION["userName"] = $result["data"]['userName'];
+			$_SESSION["userName"] = $result["data"]['username'];
 			$_SESSION["fName"] = $result["data"]['fName'];
 			$_SESSION["lName"] = $result["data"]['lName'];
 			$_SESSION["email"] = $result["data"]['email'];
 			$_SESSION["gender"] = $result["data"]['gender'];
 			$_SESSION["country"] = $result["data"]['country'];
-
-			//Setting the cookies
-			if($rememberCookie == "true"){
-				setcookie("usernameCookie", $userName, time() + 3600 * 24 * 30);
-
-			}
-
+            $_SESSION["age"] = $result["data"]['age'];
+            $_SESSION["weight"] = $result["data"]['weight'];
+            $_SESSION["height"] = $result["data"]['height'];
+            $_SESSION["activity"] = $result["data"]['activity'];
+            $_SESSION["goal"] = $result["data"]['goal'];
+            
 			echo json_encode($finalResponse);
 
 		}
@@ -67,11 +63,9 @@
 
 
 	function verifyRegistration(){
-
-        echo("debug");
 		$userFirstName = $_POST["firstname"];
 		$userLastName = $_POST["lastname"];
-        $userName = $_POST["username"]
+        $userName = $_POST["username"];
 		$userPassword = $_POST["password"];
 		$userEmail = $_POST["email"];
 		$userCountry = $_POST["country"];
@@ -82,7 +76,7 @@
         $userActivity = $_POST["activity"];
         $userGoal = $_POST["goal"];
 
-		$result = registrationAction($userFirstName, $userLastName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
+		$result = registrationAction($userFirstName, $userLastName,$userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
 
 		if($result){
 
