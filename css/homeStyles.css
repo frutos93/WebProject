@@ -127,7 +127,7 @@ fieldset{
     border: 1px solid #A3ACB8;
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08) inset;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 h1{
@@ -417,9 +417,18 @@ input[type=button]{
 .register_form{
     padding: 50px 0 0 100px;
     border-style: dotted;
-    width: 100%;
+    width: 91%;
     height: 100%;
     float: left;
+    background-color: #6C6D68;
+    border-color: #13BDC3;
+    margin: 10px;
+
+}
+
+.form_label{
+    color: whitesmoke;
+    font-size: 15px;
 }
 
 

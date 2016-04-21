@@ -17,28 +17,29 @@
 
     <div class="register_form">
 
+        
         <div class="formElement2">
-            <input id= "firstName"  type="text" placeholder="First Name"  />
-        </div>
-        <div class="formElement2">
-            <input id= "lastName"  type="text" placeholder="Last Name"  />
-        </div>
-        <div class="formElement2">Gender
-            <input id= "gender1"  type="radio" name= "gender" value= "Male"/>Male <br>
-            <input id= "gender2"  type="radio" name= "gender" value= "Female"/>Female<br>    
-        </div>
+            <p class="form_label">Complete name </p>
+            <input id= "firstName"  type="text" placeholder="..."  />
+        </div>     
+         <div  class="formElement2">
+            <p class="form_label">Username </p>
+            <input id="username"  type="text" placeholder="..." />
+        </div>   
         <div  class="formElement2">
-            <input id="email"  type="text" placeholder="Email" />
-        </div>
-        <div  class="formElement2">
-            <input id="username"  type="text" placeholder="Username" />
+            <p class="form_label">Email </p>
+            <input id="email"  type="text" placeholder="..." />
         </div>
         <div class="formElement2">
-            <input id= "password"  type="password" placeholder="Password"  />
+            <p class="form_label">Password </p>
+            <input id= "password"  type="password" placeholder="..."  />
         </div>
         <div class="formElement2">
-            <input id= "passwordConf"  type="password" placeholder="Password Confirmation"  />
-			<p>Country</p>
+            <p class="form_label">Confirm Password </p>
+            <input id= "passwordConf"  type="password" placeholder="..."  />
+        </div>
+        <div>
+			<p class="form_label">Country</p>
 			<select id= "country" name="default" class="default">
 				<option value="0"> Select a country.. </option>
 				<option value="1"> Mexico </option>
@@ -57,17 +58,26 @@
 				<option value="14"> South Africa </option>
 				<option value="15"> Venezuela </option>
 			</select>
+        </div>
         <div class="formElement2">
+            <p class="form_label">Age</p>
             <input id= "age"  type="number" min= "15" max= "99" placeholder="Age"  />
         </div>
         <div class="formElement2">
+            <p class="form_label">Gender </p>
+            <input id= "gender1"  type="radio" name= "gender" value= "Male"/>Male <br>
+            <input id= "gender2"  type="radio" name= "gender" value= "Female"/>Female<br>    
+        </div>
+        <div class="formElement2">
+            <p class="form_label">Weight</p>
             <input id= "weight"  type="number" min= "40" max= "200" placeholder="Weight"  />
         </div>
         <div class="formElement2">
+            <p class="form_label">Height</p>
             <input id= "hieght"  type="number" min= "100" max="250" placeholder="height"  />
         </div>
         <div class="formElement2">
-            <p>Activity</p>
+            <p class="form_label">Activity</p>
             <select id="#activity">
             <option value = "0"> Select a Physical Activity</option>
             <option value = "Jogging">Jogging</option>
@@ -76,7 +86,7 @@
             </select>
         </div>
         <div class="formElement2">
-            <p>Goal</p>
+            <p class="form_label">Goal</p>
             <select id="#goal">
             <option value = "0"> Select your Goal</option>
             <option value = "keep">Keep weight</option>
