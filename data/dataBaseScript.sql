@@ -366,9 +366,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Cookie','Sweets, Candy & Desserts', 'Cookies', 'piece', 1, 24, 1.07, 3.45, 0.27),
         ('Chocolate Chip Cookies ','Sweets, Candy & Desserts', 'Cookies', 'piece', 1, 69, 3.64, 8.86, 0.52),
         ('Shortbread Cookies','Sweets, Candy & Desserts', 'Cookies', 'piece', 1, 40, 1.93, 5.16, 0.49),
-
-
-
         ('Plain Crepe','Sweets, Candy & Desserts', 'Crepes', 'piece', 1, 112, 5.54, 10.83, 4.38),
         ('Chocolate Filled Crepe','Sweets, Candy & Desserts', 'Crepes', 'piece', 1, 112, 5.54, 10.83, 4.38),
         ('Glazed Doughnuts', 'Sweets, Candy & Desserts', 'Doughnuts', 'piece', 1, 192, 10.3, 22.86, 2.34),
