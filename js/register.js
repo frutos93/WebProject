@@ -1,71 +1,72 @@
 $(document).ready(function(){
-    
-    $("#registerL").click(function(e){
-        var letters = /^[A-Za-z]+$/;
-       //Verify FirstName
-        if ($("#firstName").val() != "")
-            if($("#firstName").val().match(letters)){
+
+    $("#registerL").click(function(){
+       //  var letters = /^[A-Za-z]+$/;
+       // //Verify FirstName
+       //  if ($("#firstName").val() != "")
+       //      if($("#firstName").val().match(letters)){
                 
-            }
-            else{
-                alert("Type only letters in your name");
-                return;
-            }
-        else{
-            alert("Type your name");
-            return;
-        }
+       //      }
+       //      else{
+       //          alert("Type only letters in your name");
+       //          return;
+       //      }
+       //  else{
+       //      alert("Type your name");
+       //      return;
+       //  }
         
-        //Verify LastName
-        if ($("#lastName").val() != "")
-            if($("#lastName").val().match(letters)){
+       //  //Verify LastName
+       //  if ($("#lastName").val() != "")
+       //      if($("#lastName").val().match(letters)){
                 
-            }
-            else{
-                alert("Type only letters in your name");
-                return;
-            }
-        else{
-            alert("Type your name");
-            return;
-        }
+       //      }
+       //      else{
+       //          alert("Type only letters in your name");
+       //          return;
+       //      }
+       //  else{
+       //      alert("Type your name");
+       //      return;
+       //  }
         
-        if($("#email").val() == ""){
-            alert("Type your email");
-            return;
-        }
-        //Verify Username
-        if ($("#username").val() == ""){
-            alert("Type your username");
-            return;
-        }
+       //  if($("#email").val() == ""){
+       //      alert("Type your email");
+       //      return;
+       //  }
+       //  //Verify Username
+       //  if ($("#username").val() == ""){
+       //      alert("Type your username");
+       //      return;
+       //  }
         
-        //Verify Password
-        if ($("#password").val()== ""){
-            alert("Type your password");
-            return;
-        }        
+       //  //Verify Password
+       //  if ($("#password").val()== ""){
+       //      alert("Type your password");
+       //      return;
+       //  }        
         
-        if($("#country option:selected").val() == 0){
-            alert("Select a country");
-            return;
-        }
+       //  if($("#country option:selected").val() == 0){
+       //      alert("Select a country");
+       //      return;
+       //  }
         
-        if( $("#age").val() == "") {
-            alert("Type your age");
-            return;
-        }
+       //  if( $("#age").val() == "") {
+       //      alert("Type your age");
+       //      return;
+       //  }
         
-        if( $("#weight").val() == "") {
-            alert("Type your weight");
-            return
-        }
+       //  if( $("#weight").val() == "") {
+       //      alert("Type your weight");
+       //      return
+       //  }
         
-        if( $("#height").val() == "") {
-            alert("Type your height");
-            return
-        }
+       //  if( $("#height").val() == "") {
+       //      alert("Type your height");
+       //      return
+       //  }
         
+<<<<<<< HEAD
         if( $("#activity option:selected").val() == "0"){
             alert("Type your physical activity");
             return;
@@ -78,6 +79,20 @@ $(document).ready(function(){
             alert("Select a gender");
             return;
         }
+=======
+       //  if( $("#activity").val() == "0"){
+       //      alert("Type your physical activity");
+       //      return;
+       //  }
+       //  if( $("#goal").val()== "0"){
+       //      alert("Type your goal");
+       //      return; 
+       //  }
+       //  if ($('input[name=gender]:checked').length == 0){
+       //      alert("Select a gender");
+       //      return;
+       //  }
+>>>>>>> daniel
 
         
         var dataToRegister = {
@@ -91,8 +106,13 @@ $(document).ready(function(){
             age : $("#age").val(),
             weight : $("#weight").val(),
             height : $("#height").val(),
+<<<<<<< HEAD
             activity : $("#activity option:selected").text(),
             goal : $("#goal option:selected").text(),
+=======
+            activity : $("#activity:selected").val(),
+            goal : $("#goal:selected").val(),
+>>>>>>> daniel
             action: "REGISTER",
         }
         
@@ -106,17 +126,25 @@ $(document).ready(function(){
             success: function(jsonObject)
             {
                 window.location.replace("home.html");
+
+
             },
             error: function(errorMsg)
             {
-                alert("Registration Error" + errorMsg.statusText); 
+                alert("Registration Error " + errorMsg.statusText); 
             }
-            });
+
+        });
         
     });
     
     $("#cancel").click(function(e){
          e.preventDefault;
         location.replace("/login.html");
+    });
+
+
+    $(".default").dropkick({
+      
     });
 });

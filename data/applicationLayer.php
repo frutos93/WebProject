@@ -63,6 +63,11 @@
 
 
 	function verifyRegistration(){
+<<<<<<< HEAD
+=======
+
+        echo "debug";
+>>>>>>> daniel
 		$userFirstName = $_POST["firstname"];
 		$userLastName = $_POST["lastname"];
         $userName = $_POST["username"];
@@ -76,7 +81,13 @@
         $userActivity = $_POST["activity"];
         $userGoal = $_POST["goal"];
 
+<<<<<<< HEAD
 		$result = registrationAction($userFirstName, $userLastName,$userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
+=======
+        echo ($userActivity = $_POST["activity"]);
+
+		$result = registrationAction($userFirstName, $userLastName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
+>>>>>>> daniel
 
 		if($result){
 
