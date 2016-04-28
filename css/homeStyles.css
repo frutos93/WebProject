@@ -14,6 +14,9 @@ h2{
     color: whitesmoke;
 
 }
+input{
+    outline: none;
+}
 .logo{
     text-align: center;
 }
@@ -367,10 +370,11 @@ input[type=button]{
 }
 
 .profile_content {
-        border: solid 1px black;
-    padding: 20px;
+    /* padding: 20px; */
     text-align: center;
-    margin: 70px 40px 30px 40px;
+    margin: 54px 0px 30px;
+    float: left;
+    width: 100%;
 }
 
 #content-tab3{
@@ -411,6 +415,14 @@ input[type=button]{
     height: 30px;
     float: right;
 }
+.box2{
+    margin: 10px;
+    width: 100%;
+    max-width: 300px;
+    height: 30px;
+    float: right;
+}
+
 
 .container-1 input#search{
     width: 100%;
@@ -521,6 +533,72 @@ input[type=button]{
     background: #AEC84D;
 }
 
+
+
+
+.container-5{
+  overflow: hidden;
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.container-5 input#search{
+    width: 100%;
+    height: 30px;
+    margin: 4px 0;
+    background: #FFFFFA;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 5px;
+    padding-right: 53px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    outline:0px;
+
+
+}
+.container-5 input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+
+.container-5 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ 
+  border: none;
+  background: #FFFFFF;
+  height: 30px;
+  width: 50px;
+  margin: 4px;
+  color: #4f5b66;
+  opacity: 0;
+  font-size: 10pt;
+ 
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+
+.container-5:hover button.icon, .container-5:active button.icon, .container-5:focus button.icon{
+    outline: none;
+    opacity: 1;
+    margin-left: -50px;
+
+}
+ 
+.container-5:hover button.icon:hover{
+    background: #AEC84D;
+}
+
 .menu_header a{
     color: #FFFFFF;
     text-decoration: none;
@@ -610,6 +688,16 @@ input[type=button]{
     /* padding: 5px; */
 }
 
+#content-search{
+    width: 100%;
+    /* width: auto; */
+    background-color: #FFFFFA;
+    float: left;
+    padding: 40px 0; 
+    /*padding-top: 40px;*/
+    /* padding: 5px; */
+}
+
 .left_side{
     width: 67%;
     border: double 1px #BFD35B;
@@ -619,6 +707,142 @@ input[type=button]{
     /* padding-top: 15px; */
     /* padding-left: 15px; */
     margin-left: 20px;
+}
+.right_side{
+    width: 25%;
+    float: left;
+    border: double 1px #A3ACB8;
+    border-radius: 2px;
+    margin-left: 25px;
+    height: 100%;
+    background: gainsboro;
+    padding-bottom: 20px;
+
+}
+
+.type_side{
+    width: 30%;
+    float: left;
+    border-radius: 2px;
+    margin-left: 20px;
+    background: #F5F5F2;
+    padding-bottom: 20px;
+}
+
+.food_side{
+    width: 60%;
+    float: left;
+    border: double 1px #BFD35B;
+    border-radius: 2px;
+    margin-left: 25px;
+    height: 100px;
+    
+
+}
+
+.title{
+    width: 100%; 
+    border: solid 4px #BFD35B;
+    float: left; 
+
+}
+
+.food_title{
+    width: 100%; 
+    border: solid 4px #BFD35B;
+    float: left; 
+}
+
+#img_tittle{
+    max-width: 120px;
+    float: left;
+}
+
+#info{
+    margin-top: 35px;
+    float: left;
+    border: solid 1px #DCDCDC;
+    padding: 10px;
+}
+
+#info td{
+    border: solid 0px black;
+    
+}
+
+#calculator{
+    float: left;
+    margin: 35px 0px 0px 50px;
+    width: 66%;
+    padding: 20px;
+    border: dotted;
+}
+#cal{
+    float: left;
+    width: 100%;
+
+}
+#new{
+    width: 100%;
+    float:left;
+    text-align: center;
+}
+#dayli{
+    width: 100%;
+    margin: 50px 160px;
+    /* padding: 49px; */
+    max-width: 1000px;
+    text-align: center;
+    float: left;
+}
+
+#dayli_food{
+    width: 100%;
+    float:left;
+    text-align: center;
+    max-width: 1200px;
+}
+.label { 
+    float: left;
+    border: solid 2px;
+    width: 23%;
+    height: 50px;
+    /* vertical-align: middle; */
+    padding-top: 27px;
+
+
+}
+
+#dayli_food td.label_food{ 
+    float: left;
+    border: solid;
+    width: 19%;
+    height: 50px;
+    /* vertical-align: middle; */
+    padding-top: 27px;
+
+
+}
+.label { 
+    float: left;
+    border: solid 2px;
+    width: 23%;
+    height: 50px;
+    /* vertical-align: middle; */
+    padding-top: 27px;
+
+
+}
+
+.label_food{ 
+    float: left;
+    border: solid;
+    width: 19%;
+    height: 50px;
+    /* vertical-align: middle; */
+    padding-top: 27px;
+
+
 }
 
 #comentabttn{
@@ -632,16 +856,123 @@ input[type=button]{
     margin-bottom: 10px;
 }
 
-.right_side{
-    width: 25%;
+.title h1{
+    padding: 9px;
+    color: #57566B;
+}
+
+.type_side a{
     float: left;
-    border: double 1px #A3ACB8;
-    border-radius: 2px;
-    margin-left: 25px;
-    height: 100px;
-    background: gainsboro;
+    /* text-align: center; */
+    width: 71%;
+    text-decoration: none;
+    color: #028CC4;
+    border-bottom: solid 1px #949797;
+    padding: 20px 0;
+    margin-left: 35px
+}
+
+.searchBar{
+    width: 100%;
+    max-width: 200px;
+    color: #4D5164;
+    font-size: 13px;
+    border: none;
+    border-style: solid;
+    border-color: #E6E6E6;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 4px 0 4px 0;
+    outline:0px;
 
 }
+
+.searchSeccion {
+    width: 100%; 
+    margin: 20px 0 50px 0;
+    text-align: center;
+}
+
+.icon{ 
+    width: 30px;
+ }
+
+.right_side a{
+    float: left;
+    width: 100%;
+    padding: 20px 0;
+}
+.right_side a:hover{
+    text-decoration: underline;
+}
+
+.right_side h4{
+    float: left;
+    text-align: center;
+    margin: 12px;
+    padding-left: 21px;
+    font-size: 20px;
+}
+
+input#add_new{
+    float: left;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px;
+    background: #1CCED0;
+         border-radius: 5px;
+
+
+}
+
+input#favorite{
+    float: left;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 27px;
+    background: #DE7C28;
+     border-radius: 5px;
+
+}
+input#cantidad{
+    float: left;
+    width: 50%;
+    max-width: 67px;
+    font-size: 21px;
+
+}
+input#calculate{
+    float: left;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px;
+    background: #BFD35B;
+     border-radius: 5px;
+
+}
+input#add_day{
+    float: left;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px;
+    background: #BFD35B;
+     border-radius: 5px;
+
+}
+input#add_food{
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px;
+    background: #BFD35B;
+    border-radius: 5px;
+
+}
+
 /*input[type="checkbox"] + label{
     width:19px;
     height:19px;

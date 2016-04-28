@@ -1,0 +1,23 @@
+● Login
+
+ Logout
+
+ Register
+
+ Share a post
+
+● Look the specifications of the food
+
+● Search a particular food
+
+● Change your profile data
+
+● Check your history meal registered
+
+● Register a daily meal
+
+● Check your favorite foods
+
+● Add a food to your favorite list foods
+
+● Add a new product into your personal list

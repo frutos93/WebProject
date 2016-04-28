@@ -10,6 +10,7 @@ $(document).ready(function(){
         $("#tabcontent > #content-" + identifier).addClass('active');
     });
 
+    $("#usName").text(localStorage.getItem('name'));
     var dataSession = {
         action: "SESSION",
     }
@@ -21,24 +22,81 @@ $(document).ready(function(){
     }
 
 
-        
-    $.ajax({
+ $.ajax({
         url: "data/applicationLayer.php",
         type: "POST",
         data: dataComments,
         dataType: "html",
         success: function(Data){
-
             $("#content-tab1 div").append(Data);
-                
         },
                 
         error: function(errorMsg)
             {
                 alert(errorMsg.statusText); 
             }
+    });
+    
+    
+     $("#comentabttn").click(function(){
+
+        var text = $("#mycoment").val();
+
+        if(text != ""){
+
+            var dataToSend = { 
+                comment : text,
+                action: "SEARCH", 
+            }
+
+            $.ajax({
+                url: "data/applicationLayer.php",
+                type: "POST",
+                data: dataToSend,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function(jsonObject) {
+                    //alert(jsonObject.fname+ " " + jsonObject.lname);
+                },
+                error: function(errorMsg) {
+                    alert("Login ERROR " + errorMsg.statusText); 
+                }
+
+            });
+
+        }
+        
+    });
+    
+    $("#searchBtn").click(function(){
+
+        if($("#search").val() == "")
+            alert("Enter a search value.");
+        else{
+        var dataToSend = { 
+                food : $("#search").val(),
+                action: "SEARCH", 
+            }
+            $.ajax({
+                url: "data/applicationLayer.php",
+                type: "POST",
+                data: dataToSend,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function(jsonObject) {
+                    localStorage.clear();
+                    localStorage.setItem('currentFood', jsonObject.name);
+                    window.location.replace("food_specification.html");
+                },
+                error: function(errorMsg) {
+                    alert("Login ERROR " + errorMsg.statusText); 
+                }
+
+            });
+    }
 
     });
+    /*
 
     $.ajax({
         url: "data/applicationLayer.php",
@@ -79,44 +137,7 @@ $(document).ready(function(){
     });
 
 
-    $("#comentabttn").click(function(){
-
-        var text = $("#mycoment").val();
-
-        if(text != ""){
-
-            var dataToSend = { 
-                comment : text,
-                action: "POSTCOMMENT", 
-            }
-
-            $.ajax({
-                url: "data/applicationLayer.php",
-                type: "POST",
-                data: dataToSend,
-                dataType: "json",
-                contentType: "application/x-www-form-urlencoded",
-                success: function(jsonObject) {
-                    //alert(jsonObject.fname+ " " + jsonObject.lname);
-                    var currentHTML = ""; 
-                    currentHTML +="<div class = comment>";
-                    currentHTML +="<h3>" + jsonObject + " </h3>";
-                    currentHTML +="<p>" + text + "</p";
-                    currentHTML +="</div>";
-                    $("#content-tab1 #comments").append(currentHTML);
-                    $("#mycoment").val('');
-
-
-                },
-                error: function(errorMsg) {
-                    alert("Login ERROR " + errorMsg.statusText); 
-                }
-
-            });
-
-        }
-        
-    });
+   
 
     $("#searchBttn").click(function(){
 
@@ -151,9 +172,17 @@ $(document).ready(function(){
     });
 
 
-
+*/
 
 }); //END
+    $(document).keypress(function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $('#searchBtn').click();
+        }
+    });
+
+
 
 
 

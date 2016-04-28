@@ -7,7 +7,7 @@ CREATE TABLE Users(
     lName VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL,
     country VARCHAR(20) NOT NULL,
-    gender CHAR NOT NULL
+    gender CHAR NOT NULL,
     age VARCHAR(2) NOT NULL,
     weight VARCHAR(5) NOT NULL,
     height VARCHAR(5) NOT NULL,
@@ -26,13 +26,41 @@ CREATE TABLE Food (
     id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
-    product VARCHAR(50) NOT NULL,
+    product VARCHAR(50),
     brand VARCHAR(50),
-    measure VARCHAR(10),
-    portion FLOAT(6) NOT NULL,
-    carbs FLOAT(6) NOT NULL,
-    protein FLOAT(6) NOT NULL,
+    measure VARCHAR(10) NOT NULL,
+    calories FLOAT(6) NOT NULL,
     fat FLOAT(6) NOT NULL,
+    carbs FLOAT(6) NOT NULL,
+    protein FLOAT(6) NOT NULL
+);
+CREATE TABLE Favorities (
+    id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    nameFood VARCHAR(50) NOT NULL,
+    FOREIGN KEY (username) REFERENCES Users(username),
+    FOREIGN KEY (nameFood) REFERENCES Food(name)
+);
+
+CREATE TABLE PersonalList(
+    id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    idFood int(50) NOT NULL,
+    nameFood VARCHAR(50) NOT NULL,
+    FOREIGN KEY (username) REFERENCES Users(username),
+    FOREIGN KEY (idFood) REFERENCES Food(id),
+    FOREIGN KEY (nameFood) REFERENCES Food(name)
+);
+
+CREATE TABLE DaylyPlan(
+    id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    idFood int(50) NOT NULL, 
+    portion FLOAT(6) NOT NULL,
+    dayDate date NOT NULL,
+    FOREIGN KEY (username) REFERENCES Users(username),
+    FOREIGN KEY (idFood) REFERENCES Food(id),
+    FOREIGN KEY (portion) REFERENCES Food(portion)
 );
 
 INSERT INTO Food(name, type, product, measure, portion, calories,  fat, carbs, protein)
@@ -43,10 +71,9 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Cooked Lentils','Beans & Legumes', 'Lima Beans', 'g', 100, 113, 0.86, 20.17, 6.84),
         ('Quinoa (Cooked)','Beans & Legumes', 'Quinoa', 'g', 100, 143, 2.22, 26.35, 5.01),
         ('Firm Silken Tofu','Beans & Legumes', 'Tofu', 'g', 100, 62, 2.7, 2.4, 6.9),
-        
         ('Bagel','Breads & Cereals', 'Bagels', 'piece', 1, 270, 1.7, 53.02, 10.52),
         ('Multigrain Bagel','Breads & Cereals', 'Bagels', 'piece', 1, 272, 1.34, 55.08, 11.84),
-        ('Toasted Bagel','Breads & Cereals', 'Bagels', 'piece', 1, 1.7, 56.54, 11.03),
+        ('Toasted Bagel','Breads & Cereals', 'Bagels','', 'piece', 1, 1.7, 56.54, 11.03),
         ('Biscuit','Breads & Cereals', 'Breads', 'piece', 1, 212, 9.78, 26.76, 4.20),         
         ('Wheat Bread','Breads & Cereals', 'Breads', 'slice', 1, 67, 1.07, 12.26, 2.37),
         ('Multigrain Bread','Breads & Cereals', 'Breads', 'slice', 1, 65, 0.99, 12.06, 2.6),
@@ -67,13 +94,11 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Toasted Multigrain Bread','Breads & Cereals', 'Toast', 'slice', 1, 65, 0.98, 12.1, 2.62),
         ('Corn Tortilla','Breads & Cereals', 'Tortillas', 'piece', 1, 52, 1.23, 18.24, 2.66),
         ('Flour Tortilla','Breads & Cereals', 'Tortillas', 'piece', 1, 159, 3.95, 26.19, 4.23),
-
-
         ('American Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 337, 26.05, 6.94, 18.94),
         ('Blue Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 353, 28.74, 2.34, 21.4),
         ('Brie Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 334, 27.68, 0.45, 20.75),
         ('Camembert Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 300, 24.26, 0.46, 19.8),
-        ('Cheddar Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 403, 33.14, 1.28, 24.9v),
+        ('Cheddar Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 403, 33.14, 1.28, 24.9),
         ('Cottage Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 103, 4.51, 2.68, 12.49),
         ('Cream Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 349, 34.87, 2.66, 7.55),
         ('Cottage Cheese','Cheese, Milk & Dairy', 'Cheese', 'g', 100, 103, 4.51, 2.68, 12.49),
@@ -99,8 +124,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Light Sour Cream','Cheese, Milk & Dairy', 'Sour Cream', 'tbsp', 1, 22, 1.7, 1.14, 0.56),
         ('Yogurt','Cheese, Milk & Dairy', 'Yogurt', 'g', 100, 104, 2.6, 17.41, 2.8),
         ('Plain Yogurt','Cheese, Milk & Dairy', 'Yogurt', 'g', 100, 63, 1.55, 7.04, 5.25),
-        
-
         ('Beer','Drinks', 'Alcohol', 'ml', 100, 44, 0, 3.6, 0.47),
         ('Light Beer','Drinks', 'Alcohol', 'ml', 100, 29, 0, 1.64, 0.24),
         ('Table Wine','Drinks', 'Alcohol', 'ml', 100, 84, 0, 2.71, 0.07),
@@ -140,9 +163,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Water','Drinks', 'Water', 'ml', 100, 0, 0, 0, 0),
         ('Water (Bottled)','Drinks', 'Water', 'ml', 100, 0, 0, 0, 0),
         ('Spring Water','Drinks', 'Water', 'ml', 100, 0, 0, 0, 0),
-
-
-
         ('Egg Whites','Eggs', 'Egg Whites', 'egg', 1, 17, 0.06, 0.24, 3.6),
         ('Cooked Egg White','Egg Whites', 'Egg', 'egg', 1, 17, 0.06, 0.24, 3.6),
         ('Egg Yolk','Eggs', 'Egg Yolk', 'egg', 1, 55, 4.51, 0.61, 2.7),
@@ -151,10 +171,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Boiled Egg','Eggs', 'Egg', 'egg', 1, 77, 5.28, 0.56, 6.26),
         ('Scrambled Egg','Eggs', 'Egg', 'egg', 1, 101, 7.45, 1.34, 6.76),
         ('Fried Egg','Eggs', 'Egg', 'egg', 1, 92, 7.04, 0.4, 6.27),
-        
-
-
-
         ('Hamburger (Single Patty with Condiments)','Fast Food', 'Burgers', 'burger', 1, 272, 9.77, 34.25, 12.32),
         ('Cheeseburger (Single Patty with Condiments)','Fast Food', 'Burgers', 'burger', 1, 295, 14.15, 26.53, 15.96),
         ('Cheeseburger with Bacon and Condiments','Fast Food', 'Burgers', 'burger', 1, 608, 36.76, 37.13, 32),
@@ -174,9 +190,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Cheese Pizza','Fast Food', 'Pizza', 'slice', 1, 237, 10.1, 26.08, 10.6),
         ('Pizza with Meat and Vegetables','Fast Food', 'Pizza', 'slice', 1, 276, 12.61, 26.08, 10.6),
         ('Pizza with Meat and Fruits','Fast Food', 'Pizza', 'slice', 1, 237, 10.1, 26.08, 10.6),
-
-
-
         ('Canned Anchovy','Fish & Seafood', 'Anchovies', 'anchovy', 1, 8, 0.39, 0, 1.16),
         ('Fried Calamari','Fish & Seafood', 'Calamari', 'piece', 1, 12, 0.21, 0.96, 1.47),
         ('Baked or Broiled Calamari','Fish & Seafood', 'Calamari', 'piece', 1, 15, 0.52, 0.42, 2.1),
@@ -198,7 +211,7 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Blue Mussels','Fish & Seafood', 'Lobster', 'piece', 1, 14, 0.36, 0.59, 1.9),
         ('Cooked Mussels','Fish & Seafood', 'Lobster', 'piece', 1, 12, 0.66, 0.35, 1.1),
         ('Octopus','Fish & Seafood', 'Octopus', 'g', 100, 82, 1.04, 2.2, 14.91),
-        ('Cooked Octopus','Fish & Seafood', 'Octopus', 'g', 100, 188, 8.1 10.7, 16.94),
+        ('Cooked Octopus','Fish & Seafood', 'Octopus', 'g', 100, 188, 8.1,10.7, 16.94),
         ('Steamed Octopus','Fish & Seafood', 'Octopus', 'g', 100, 163, 2.06, 4.36, 29.57),
         ('Salmon','Fish & Seafood', 'Salmon', 'g', 100, 146, 5.93, 0, 21.62),
         ('Baked or Broiled Salmon','Fish & Seafood', 'Salmon', 'g', 100, 171, 7.56, 0.49, 23.97),
@@ -211,9 +224,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Fried Shrimp','Fish & Seafood', 'Shrimp', 'piece', 1, 27, 1.35, 1.29, 2.28),
         ('Tuna in Water (Canned)','Fish & Seafood', 'Tuna', 'g', 100, 116, 0.82, 0, 25.51),
         ('Tuna in Oil (Canned)','Fish & Seafood', 'Tuna', 'g', 100, 198, 8.21, 0, 29.13),
-
-
-
         ('Red Apple','Fruits', 'Apples', 'piece', 1, 72, 0.23, 19.06, 0.36),
         ('Yellow Apple','Fruits', 'Apples', 'piece', 1, 72, 0.23, 19.06, 0.36),
         ('Green Apple','Fruits', 'Apples', 'piece', 1, 72, 0.23, 19.06, 0.36),
@@ -243,7 +253,7 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Honeydew Melons','Fruits', 'Melons', 'g', 100, 36, 0.14, 9.09, 0.54),
         ('Cantaloupe Melons','Fruits', 'Melons', 'g', 100, 34, 0.19, 8.16, 0.84),
         ('Oranges','Fruits', 'Oranges', 'piece', 1, 62, 0.16, 15.39, 1.23),
-        ('Papaya','Fruits', 'Papaya', 'g',100 39, 0.14, 9.81, 0.61),
+        ('Papaya','Fruits', 'Papaya', 'g',100, 39, 0.14, 9.81, 0.61),
         ('Dried Papaya','Fruits', 'Papaya', 'g', 100, 258, 0.93, 64.97, 4.04),
         ('Peach','Fruits', 'Peaches', 'piece', 1, 38, 0.24, 9.35, 0.89),
         ('Peaches (Canned)','Fruits', 'Peaches', 'g', 100, 24, 0.06, 6.11, 0.44),
@@ -254,15 +264,11 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Dried Plum','Fruits', 'Plums', 'piece', 1,20 , 0.03, 5.37, 0.18),
         ('Dried Prune','Fruits', 'Prunes', 'g', 100, 240, 0.38, 63.88, 2.18),
         ('Cooked Dried Prune','Fruits', 'Prunes', 'g', 100, 107, 0.16, 28.08, 0.96),
-        
-
-
         ('Bacon','Meat', 'Bacon', 'slice', 1, 27, 2.09, 0.07, 1.85),
         ('Bacon (Fried, Cooked)','Meat', 'Bacon', 'slice', 1, 42, 3.18, 0.12, 3.03),
         ('Chicken Breast','Meat', 'Chicken', 'g', 100, 195, 7.72, 0, 29.55),
         ('Roasted Broiled or Baked Chicken Breast','Meat', 'Chicken', 'g', 100, 195, 7.72, 0, 29.55),
         ('Chicken Breast (Skin Not Eaten)','Meat', 'Chicken', 'g', 100, 164, 3.54, 0, 30.76),
-        ('Chicken Drumstick','Meat', 'Chicken', 'g', 100, , , , ),
         ('Roasted Broiled or Baked Chicken Drumstick','Meat', 'Chicken', 'g', 100, 214, 11.06, 0, 26.8),
         ('Chicken Drumstick (Skin Not Eaten)','Meat', 'Chicken', 'g', 100, 171, 5.61, 0, 28.05),
         ('Chicken Thigh','Meat', 'Chicken', 'g', 100, 245, 15.36, 0, 24.85),
@@ -280,7 +286,7 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Beef Shortribs ','Meat', 'Beef', 'g', 100, 342, 26.15, 0, 24.84),
         ('Beef ','Meat', 'Beef', 'piece', 1, 310, 27.59, 0, 14.18),
         ('Sliced Ham','Meat', 'Cold Cuts', 'slice', 1, 46, 2.41, 1.07, 4.65),
-        ('Salami','Meat', 'Cold Cuts', 'slice', 1, 58, 4.63, 0.52, 3.2)
+        ('Salami','Meat', 'Cold Cuts', 'slice', 1, 58, 4.63, 0.52, 3.2),
         ('Beef Salami','Meat', 'Cold Cuts', 'slice', 1, 59, 5.11, 0.44, 2.9),
         ('Pepperoni','Meat', 'Cold Cuts', 'slice', 1, 26, 2.22, 0.22, 1.12),
         ('Lamb','Meat', 'Lamb', 'g', 100, 292, 20.77, 0, 24.32),
@@ -299,10 +305,8 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Turkey Breast Meat','Meat', 'Turkey', 'g', 100, 104, 1.66, 4.21, 17.07),
         ('Turkey Bacon','Meat', 'Turkey', 'slice', 1, 31, 2.23, 0.25, 2.37),
         ('Turkey Meat (Cooked, Roasted)','Meat', 'Turkey', 'g', 100, 170, 4.97, 0, 29.32),
-
-
         ('Almonds','Nuts & Seeds', 'Almonds', 'piece', 1, 7, 0.61, 0.24, 0.26),
-        ('Dry Roasted Almonds (with Salt Added)','Nuts & Seeds', 'Almonds', 'g', 100, 597, 52.83, 19.29, 22.09,
+        ('Dry Roasted Almonds (with Salt Added)','Nuts & Seeds', 'Almonds', 'g', 100, 597, 52.83, 19.29, 22.09),
         ('Peanuts','Nuts & Seeds', 'Peanuts', 'g', 100, 567, 49.24, 16.13, 25.8),
         ('Dry Roasted Salted Peanuts','Nuts & Seeds', 'Peanuts', 'g', 100, 585, 49.66, 21.51, 23),
         ('Walnuts','Nuts & Seeds', 'Walnuts', 'g', 100, 654, 65.21, 13.71, 15.23),
@@ -313,8 +317,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Dry Roasted Sunflower Seeds','Nuts & Seeds', 'Seeds', 'g', 100, 582, 49.8, 24.07, 19.33),
         ('Flaxseed Seeds','Nuts & Seeds', 'Seeds', 'g', 100, 534, 42.16, 28.88, 18.29),
         ('Dried Pumpkin Seeds','Nuts & Seeds', 'Seeds', 'g', 100, 541, 45.85, 17.81, 24.54),
-     
-
         ('Macaroni','Pasta, Rice & Noodles', 'Macaroni', 'g', 100, 157, 0.92, 30.68, 5.76),
         ('Macaroni with Cheese','Rice & Noodles', 'Macaroni', 'g', 100, 203, 9.4, 21.46, 7.94),
         ('Noodles','Rice & Noodles', 'Noodles', 'g', 100, 137, 2.06, 25.01, 4.51),
@@ -328,8 +330,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Brown Rice','Rice & Noodles', 'Rice', 'g', 100, 110, 0.89, 22.78, 2.56),
         ('Fried Rice','Rice & Noodles', 'Rice', 'g', 100, 168, 6.23, 21.06, 6.3),
         ('Wild Rice','Rice & Noodles', 'Rice', 'g', 100, 101, 0.34, 21.34, 3.99),
-        
-
         ('Breakfast Bar','Snacks', 'Cereal Bars', 'bar', 1, 181, 5.4, 30.01, 3.05),
         ('Breakfast Bars (Oats, Sugar, Raisins, Coconut, Include Granola Bar)','Snacks', 'Cereal Bars', 'bar', 1, 181, 5.4, 30.01, 3.05),
         ('Potato Chips','Snacks', 'Chips', 'g', 100, 547, 37.47, 49.74, 6.56),
@@ -351,8 +351,6 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Sushi','Snacks', 'Sushi', 'piece', 1, 37, 0.11, 7.77, 1.12),
         ('Sushi with Vegetables and Seafood','Snacks', 'Sushi', 'piece', 1, 36, 0.11, 7.15, 1.4),
         ('California Rolls','Snacks', 'Sushi', 'piece', 1, 33, 0.12, 6.31, 1.38),
-
-
         ('Brownie','Sweets, Candy & Desserts', 'Brownies', 'g', 100, 379, 13.77, 62.54, 4.76),
         ('Lowfat Brownie','Sweets, Candy & Desserts', 'Brownies', 'g', 100, 324, 5.38, 70.23, 5.43),
         ('Cakes','Sweets, Candy & Desserts', 'Cakes', 'piece', 1, 257, 18, 20.4, 4.4),
@@ -396,9 +394,7 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Plain Waffle', 'Sweets, Candy & Desserts', 'Waffles', 'piece', 1, 121, 3.72, 19.05, 2.85),
         ('Fruit Waffle', 'Sweets, Candy & Desserts', 'Waffles', 'piece', 1, 223, 9.84, 30.54, 3.72),
         ('Toasted Plain Waffle', 'Sweets, Candy & Desserts', 'Waffles', 'piece', 1, 223, 9.84, 30.54, 3.72),
-
-
-        ('Broccoli', 'Vegetables', 'Broccoli', 'g', 100, 34, 0.37, 6.64, 2.82),
+         ('Broccoli', 'Vegetables', 'Broccoli', 'g', 100, 34, 0.37, 6.64, 2.82),
         ('Cooked Broccoli', 'Vegetables', 'Broccoli', 'g', 100, 34, 0.37, 6.64, 2.82),
         ('Cabbage', 'Vegetables', 'Cabbage', 'g', 100, 24, 0.12, 5.58, 1.44),
         ('Green Cabbage', 'Vegetables', 'Cabbage', 'g', 100, 24, 0.12, 4.58, 1.44),
@@ -434,17 +430,7 @@ VALUES  ('Beans','Beans & Legumes', 'Beans', 'g', 100, 151, 5.15, 21.39, 5.54),
         ('Spinach', 'Vegetables', 'Spinach', 'g', 100, 7, 0.12, 1.09, 0.86),
         ('Tomatoe', 'Vegetables', 'Tomatoes', 'g', 100, 18, 0.2, 3.92, 0.88),
         ('Red Tomatoes', 'Vegetables', 'Tomatoes', 'g', 100, 18, 0.2, 4.92, 1.88),
-        ('Cherry Tomatoes', 'Vegetables', 'Tomatoes', 'g', 100, 18, 0.2, 3.92, 0.88);
-
-
-
-
-
- 
-
-
-
-
+        ('Cherry Tomatoes', 'Vegetables', 'Tomatoes', 'g', 100, 18, 0.2, 3.92, 0.88,'');
 
 
 

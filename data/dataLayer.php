@@ -23,10 +23,9 @@
 
 		$conn = connect();
 
-
 		if ($conn != null) {
 			
-			$sql = "SELECT * FROM Users WHERE userName ='$userName' AND passWord = '$userPassword'";
+			$sql = "SELECT * FROM Users WHERE username ='$userName' AND passwrd = '$userPassword'";
 
 
 			$result = $conn -> query($sql);
@@ -46,19 +45,18 @@
 
 	}
 
-	function registrationAction($userFirstName, $userLastName, $userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal){
+	function registrationAction($userFirstName, $userLastName,$userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal){
 
-        echo("debug");
+        
 		$conn = connect();
+        
 		if ($conn != null) {
 
 			$sql =  "INSERT INTO users (username, passwrd,fName,lName,email,country,gender,age,weight,height,activity,goal) VALUES ('$userName', '$userPassword', '$userFirstName', '$userLastName', '$userEmail', '$userCountry', '$userGender', '$userAge', '$userWeight', '$userHeight', '$userActivity', '$userGoal')";
-
+            
 		
-			$result = $connec -> query($sql); 
-
+			$result = $conn -> query($sql); 
 			if($result === TRUE) { 
-
 				return TRUE;
 
 			}
@@ -71,14 +69,7 @@
 		$conn = connect();
 		if ($conn != null) {
 
-			$sql = "SELECT userName, comment 
-					FROM Comments 
-					WHERE userName = '$user'
-					UNION
-					SELECT Comments.userName, Comments.comment 
-					FROM Comments
-					JOIN Friends ON Friends.userName = '$user'
-					WHERE Comments.userName = Friends.friendName";
+			$sql = "SELECT userName, comment FROM posts";
 		
 			$result = $conn -> query($sql); 
 
@@ -111,7 +102,7 @@
 		$conn = connect();
 		if ($conn != null) {
 
-			$sql = "INSERT INTO Comments(userName, comment) VALUES('$user', '$commentText')";
+			$sql = "INSERT INTO posts(username, comment) VALUES('$user', '$commentText')";
 
 			$result = $conn -> query($sql); 
 
@@ -171,7 +162,103 @@
 			die("Users were not found in the database"); 
 
 		}
-	}
+	} 
+    function getFood($food){
+        $conn = connect();
+		if ($conn != null) {
+			$sql = "SELECT name, type FROM food WHERE type = '$food'";
+		
+			$result = $conn -> query($sql); 
+
+			if($result -> num_rows > 0) {
+
+				$response = array("statusTxt" => "SUCCESS");
+				
+				$i = 0;
+				while($row = $result -> fetch_assoc()) {
+
+						$response [$i] = $row;
+						$i++;
+
+				}
+				return $response;
+			}
+			else {
+				header("HTTP/1.1 406 Comment not found");
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				die("comments were not found in the database"); 
+
+			}
+		}
+    }
+function getFoodInformation($food){
+    $conn = connect();
+		if ($conn != null) {
+			$sql = "SELECT name, measure, portion, calories, fat, carbs,protein FROM food where name = '$food'";
+		
+			$result = $conn -> query($sql);
+
+
+			if($result -> num_rows > 0){
+				while($row = $result -> fetch_assoc()) {
+
+						$response = array("statusTxt" => "SUCCESS", "data" => $row);
+
+				}
+				return $response; 
+			}
+			else {
+				header("HTTP/1.1 406 Comment not found");
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				die("comments were not found in the database"); 
+
+			}
+		}
+    
+}
+
+function favoriteFood($user){
+    $conn = connect();
+		if ($conn != null) {
+			$sql = "SELECT username, nameFood FROM favorites where name = '$user'";
+		
+			$result = $conn -> query($sql);
+
+			if($result -> num_rows > 0){
+				while($row = $result -> fetch_assoc()) {
+
+						$response = array("statusTxt" => "SUCCESS", "data" => $row);
+
+				}
+				return $response; 
+			}
+			else {
+				header("HTTP/1.1 406 Comment not found");
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				die("comments were not found in the database"); 
+
+			}
+		}
+}
+
+function insertFood($name,$type,$brand,$portion,
+                                $measure,$calories,$fat,$carbs,
+                                $protein){
+    $conn = connect();
+        
+		if ($conn != null) {
+
+			$sql =  "INSERT INTO food (name, type,product,brand,measure,portion,calories,fat,carbs,protein) VALUES ('$name','$type',UserInput,'$brand','$measure',
+            '$portion','$calories','$fat','$carbs','$protein')";
+            
+			$result = $conn -> query($sql); 
+			if($result === TRUE) { 
+				return TRUE;
+
+			}
+		}
+    
+}
 
 	
 ?>

@@ -40,13 +40,13 @@
 
                        <div class="menu_profile">
                            <nav class="profile_options">
-                                <a href="profile.html" class="selected">
+                                <a href="profile.html" >
                                     <img class="img_profile" src="img/person.png">
                                 </a>
                                 <a href="profile_calendar.html">
                                     <img class="img_profile" src="img/calendar.png">
                                 </a>
-                                <a href="profile_meal.html">
+                                <a href="profile_meal.html" class="selected">
                                     <img class="img_profile" src="img/meal.png">
                                 </a>
                                 <a href="profile_fav.html">
@@ -59,17 +59,91 @@
                        </div>
 
                        <div class="profile_content">
-                            <h4>Nombre</h4><p  id="nombre"></p>
-                            <h4>Apellido</h4><p  id="apellido"></p>
-                            <h4>Username</h4><p  id="username"></p>
-                            <h4>Email</h4><p  id="email"></p>
-                            <h4>Cuntry</h4><p  id="country"></p>
-                            <h4>Gender</h4><p  id="gender"></p>
-                            <h4>Age</h4><p  id="age"></p>
-                            <h4>Weight</h4><p  id="weight"></p>
-                            <h4>Height</h4><p  id="height"></p>
-                            <h4>Activity</h4><p  id="activity"></p>
-                            <h4>Goal</h4><p  id="goal"></p>                               
+
+                            <div style="float: left; width: 100%;">
+                                    <table id="dayli">
+                                        <tr class="new">
+                                            <td class="label">
+                                                Cal
+                                            </td>
+                                            <td class="label">
+                                                Fat
+                                            </td>
+                                            <td class="label">
+                                                Carbs
+                                            </td>
+                                            <td class="label">
+                                                Protein
+                                            </td>
+                                        </tr>
+                                        <tr class="new">
+                                            <td class="label">
+                                                suma total de caloria en el dia 
+                                            </td>
+                                            <td class="label">
+                                                suma Total Fat en el dia
+                                            </td>
+                                            <td class="label">
+                                                suma total de Carbs en el dia
+                                            </td>
+                                            <td class="label">
+                                                suma total de proteina en el dia 
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div style="float: left; width: 100%;">
+                                    <table id="dayli_food">
+                                        <tr class="new">
+                                            <td class="label_food">
+                                                Name
+                                            </td>
+                                            <td class="label_food">
+                                                Cal
+                                            </td>
+                                            <td class="label_food">
+                                                Fat
+                                            </td>
+                                            <td class="label_food">
+                                                Carbs
+                                            </td>
+                                            <td class="label_food">
+                                                Protein
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                    
+                                    <table id="dayli_food">
+                                        <tr class="new">
+                                            <td class="label_food">
+                                                Pasta
+                                            </td>
+                                            <td class="label_food">
+                                                20
+                                            </td>
+                                            <td class="label_food">
+                                                2
+                                            </td>
+                                            <td class="label_food">
+                                                20
+                                            </td>
+                                            <td class="label_food">
+                                                30
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <input type="button"  id="add_food" value="Add Food"/>
+
+                                </div>
+
+
+
+
+                               
                         </div>
 
                        <!--  <div id="my_selector">

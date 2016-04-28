@@ -7,7 +7,7 @@
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
         
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
-        <script src="js/profile.js" type="text/javascript"> </script>    
+<script src="js/profile.js" type="text/javascript"> </script>
     </head>
     <body>
         <div id="mainContainer">
@@ -40,10 +40,10 @@
 
                        <div class="menu_profile">
                            <nav class="profile_options">
-                                <a href="profile.html" class="selected">
+                                <a href="profile.html" >
                                     <img class="img_profile" src="img/person.png">
                                 </a>
-                                <a href="profile_calendar.html">
+                                <a href="profile_calendar.html" class="selected">
                                     <img class="img_profile" src="img/calendar.png">
                                 </a>
                                 <a href="profile_meal.html">
@@ -59,18 +59,68 @@
                        </div>
 
                        <div class="profile_content">
-                            <h4>Nombre</h4><p  id="nombre"></p>
-                            <h4>Apellido</h4><p  id="apellido"></p>
-                            <h4>Username</h4><p  id="username"></p>
-                            <h4>Email</h4><p  id="email"></p>
-                            <h4>Cuntry</h4><p  id="country"></p>
-                            <h4>Gender</h4><p  id="gender"></p>
-                            <h4>Age</h4><p  id="age"></p>
-                            <h4>Weight</h4><p  id="weight"></p>
-                            <h4>Height</h4><p  id="height"></p>
-                            <h4>Activity</h4><p  id="activity"></p>
-                            <h4>Goal</h4><p  id="goal"></p>                               
+                            <p class="form_label"> Month</p>
+                            <p class="form_label"> Day</p>
+                            <p class="form_label"> Year</p>
+                            <select id="month" name="default" class="default">
+                                <option value = "jan">January</option>
+                                <option value = "feb">February</option>
+                                <option value = "mar">Maech</option>
+                                <option value = "apr">April</option>
+                                <option value = "may">May</option>
+                                <option value = "jun">June</option>
+                                <option value = "jul">July</option>
+                                <option value = "ago">Agoust</option>
+                                <option value = "sep">September</option>
+                                <option value = "oct">October</option>
+                                <option value = "nov">November</option>
+                                <option value = "dec">December</option>
+                                        
+                            </select>
+
+                            <select id="day" name="default" class="default">
+                                <option value = "1">1</option>
+                                <option value = "2">2</option>
+                                <option value = "3">3</option>
+                                <option value = "4">4</option>
+                                <option value = "5">5</option>
+                                <option value = "6">6</option>
+                                <option value = "7">7</option>
+                                <option value = "8">8</option>
+                                <option value = "9">9</option>
+                                <option value = "10">10</option>
+                                <option value = "11">11</option>
+                                <option value = "12">12</option>
+                                <option value = "13">13</option>
+                                <option value = "14">14</option>
+                                <option value = "15">15</option>
+                                <option value = "16">16</option>
+                                <option value = "17">17</option>
+                                <option value = "18">18</option>
+                                <option value = "19">19</option>
+                                <option value = "20">20</option>
+                                <option value = "21">21</option>
+                                <option value = "22">22</option>
+                                <option value = "23">23</option>
+                                <option value = "24">24</option>
+                                <option value = "25">25</option>
+                                <option value = "26">26</option>
+                                <option value = "27">27</option>
+                                <option value = "28">28</option>
+                                <option value = "29">29</option>
+                                <option value = "30">30</option>
+                                <option value = "31">31</option>
+                            </select>
+                            
+                             <select id="year" name="default" class="default">
+                                <option value = "2015">2015</option>
+                                <option value = "2016">2016</option>
+                                
+                            </select>
+
+                               
                         </div>
+
 
                        <!--  <div id="my_selector">
                             <ul id="profile_options">

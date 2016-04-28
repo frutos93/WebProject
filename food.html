@@ -7,13 +7,13 @@
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
         
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
-<!--         <script src="js/home.js" type="text/javascript"> </script>-->    
+        <script src="js/food.js" type="text/javascript"> </script> 
     </head>
     <body>
         <div id="mainContainer">
             <div class="pageHeader">
             <ul class="menu_header">
-                <li><img src="img/profile.jpg" class="imgPro"><a href="profile.html">Usuario </a>|</li>
+                <li><img src="img/profile.jpg" class="imgPro"><a href="profile.html"id= "usName">Usuario </a>|</li>
                 <li><a href="login.html"> Log out</a></li>
             </ul>
                 
@@ -29,7 +29,7 @@
                     <div class="box">
                       <div class="container-4">
                         <input type="search" id="search" placeholder="Search..." />
-                        <button class="icon"><i class="fa fa-search"></i></button>
+                        <button class="icon" id= "searchBtn"><i class="fa fa-search"></i></button>
                       </div>
                     </div>
                 </ul>
@@ -40,22 +40,22 @@
                             <table id="food_types">
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('beans')" id= "beans" class="selected">
                                             <img class="img_profile" src="img/beans.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Beans & Legumes</b></a>
+                                            <a href= "#" onClick="setItem('beans')"><b>Beans & Legumes</b></a>
                                             <p>
                                                 All types of beans and legumes like baked beans, green beans, refried beans and lentils.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('bread')" id="bread" class="selected">
                                             <img class="img_profile" src="img/bread.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Breads & Cereals</b></a>
+                                            <a href= "#" onClick="setItem('bread')"><b>Breads & Cereals</b></a>
                                             <p>
                                                 Different types of breads and cereals like bagels, tortillas, rye, wheat bread and oatmeal.
                                             </p>  
@@ -65,22 +65,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('milk')" class="selected">
                                             <img class="img_profile" src="img/milk.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Cheese, Milk & Dairy</b></a>
+                                            <a href= "#" onClick="setItem('milk')"><b>Cheese, Milk & Dairy</b></a>
                                             <p>
                                                 Cheese varieties and dairy products like cheddar, mozzarella, provolone, skim milk and yogurt.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('drinks')" class="selected">
                                             <img class="img_profile" src="img/drinks.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Drinks</b></a>
+                                            <a href= "#" onClick="setItem('drinks')"><b>Drinks</b></a>
                                             <p>
                                                 Hot and cold drinks like juices, soda, smoothies, coffee, beer, wine and cocktails.
                                             </p>  
@@ -90,22 +90,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('eggs')" class="selected">
                                             <img class="img_profile" src="img/eggs.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Eggs</b></a>
+                                            <a href= "#" onClick="setItem('eggs')"><b>Eggs</b></a>
                                             <p>
                                                 Variety of plain and cooked eggs like, egg whites, hard-boiled, scrambled, fried and poached.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('fast')" class="selected">
                                             <img class="img_profile" src="img/fast.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Fast Food</b></a>
+                                            <a href= "#" onClick="setItem('fast')"><b>Fast Food</b></a>
                                             <p>
                                                 Foods from all your favorite chains like burgers, fries, burritos, tacos, hot dogs and pizza
                                             </p>  
@@ -115,22 +115,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('fish')" class="selected">
                                             <img class="img_profile" src="img/fish.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Fish & Seafood</b></a>
+                                            <a href= "#" onClick="setItem('fish')"><b>Fish & Seafood</b></a>
                                             <p>
                                                 A range of seafood and fish like shrimp, lobster, scallops, tuna, salmon, mahi mahi and tilapia.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('fruit')" class="selected">
                                             <img class="img_profile" src="img/fruit.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Fruit</b></a>
+                                            <a href= "#" onClick="setItem('fruit')"><b>Fruit</b></a>
                                             <p>
                                                 Popular fruits like apples, bananas, strawberries, oranges, grapes, peaches, pears and grapefruit.
                                             </p>  
@@ -140,22 +140,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('meat')" class="selected">
                                             <img class="img_profile" src="img/meat.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Meat</b></a>
+                                            <a href= "#" onClick="setItem('meat')"><b>Meat</b></a>
                                             <p>
                                                 Full range of meats and cuts like bacon, ribs, chicken breast, pork chops, corned beef and roast turkey.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('nuts')" class="selected">
                                             <img class="img_profile" src="img/nuts.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Nuts & Seeds</b></a>
+                                            <a href= "#" onClick="setItem('nuts')"><b>Nuts & Seeds</b></a>
                                             <p>
                                                 Popular nuts and seeds like almonds, peanuts, pecans, pistachios, walnuts and sunflower seeds.
                                             </p>  
@@ -165,22 +165,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('pasta')" class="selected">
                                             <img class="img_profile" src="img/pasta.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Pasta, Rice & Noodles</b></a>
+                                            <a href= "#" onClick="setItem('pasta')"><b>Pasta, Rice & Noodles</b></a>
                                             <p>
                                                 All types of pasta and rice like spaghetti, macaroni, ravioli, lasagna, white rice and fried rice.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('snacks')" class="selected">
                                             <img class="img_profile" src="img/snacks.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Snacks</b></a>
+                                            <a href= "#" onClick="setItem('snacks')"><b>Snacks</b></a>
                                             <p>
                                                 Sweet and salty snacks like potato chips, tortilla chips, jerky, popcorn, crackers, granola bars, trail mix and rice cakes.
                                             </p>  
@@ -190,22 +190,22 @@
                                 </tr>
                                 <tr>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('candy')" class="selected">
                                             <img class="img_profile" src="img/candy.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Sweets, Candy & Desserts</b></a>
+                                            <a href= "#" onClick="setItem('candy')"><b>Sweets, Candy & Desserts</b></a>
                                             <p>
                                                 Sweet treats like candy, chocolate, cake, donuts, ice cream, pastries, muffins, pancakes and brownies.
                                             </p>  
                                         </div>
                                     </td>
                                     <td class="food_type">
-                                        <a href="profile.html" class="selected">
+                                        <a href= "#" onClick="setItem('vegetable')" class="selected">
                                             <img class="img_profile" src="img/vegetable.png">
                                         </a>
                                         <div class="details">
-                                            <a href="profile_meal.html"><b>Vegetables</b></a>
+                                            <a href= "#" onClick="setItem('vegetable')"><b>Vegetables</b></a>
                                             <p>
                                                 All vegetables like mushrooms, carrots, potatoes, tomatoes, broccoli, lettuce, peas and onions.
                                             </p>  
@@ -213,15 +213,6 @@
                                     </td>
                                 
                                 </tr>
-
-                                    
-                                
-
-                                    
-                                
-                    
-                                
-
                             </table>
                                 
                         </div>

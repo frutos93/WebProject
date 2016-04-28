@@ -2,6 +2,7 @@
 	header('Accept: application/json');
 	header('Content-type: application/json');
 	require_once __DIR__ . '/dataLayer.php';
+
 	$action = $_POST["action"];
 
 	switch ($action) {
@@ -21,39 +22,49 @@
 			break;
 		case 'SEARCHUSER': searchUserAction(); 
 			break; 
+        case 'FOOD': searchFood();
+            break;
+        case 'GETFOOD': getFoodInfo();
+            break;
+        case 'SEARCH': findFood();
+            break;
+        case 'FAVORITES': findFavorites();
+            break;
+        case 'ADDFOOD': addFood();
+            break;
+
+        case 'ADDDAY': addDay();
+            break;
 	}
 
 
 	function verifyLogin() {
-
 		$userName = $_POST["username"]; 
 		$userPassword = $_POST["password"];
 		$rememberCookie = $_POST["cookie"];
-
-		
 		$result = loginAction($userName, $userPassword); 
-		
-
+        
 		if ($result["statusTxt"] == "SUCCESS") {
-
-			
 			$finalResponse = array("firstName" => $result["data"]["fName"], "lastName" => $result["data"]["lName"]);
-
 			//Starting the session 
 			session_start();
-			$_SESSION["userName"] = $result["data"]['userName'];
+			$_SESSION["userName"] = $result["data"]['username'];
 			$_SESSION["fName"] = $result["data"]['fName'];
 			$_SESSION["lName"] = $result["data"]['lName'];
 			$_SESSION["email"] = $result["data"]['email'];
 			$_SESSION["gender"] = $result["data"]['gender'];
-			$_SESSION["country"] = $result["data"]['country'];
+			$_SESSION["age"] = $result["data"]['age'];
+            $_SESSION["weight"] = $result["data"]['weight'];
+            $_SESSION["height"] = $result["data"]['height'];
+            $_SESSION["activity"] = $result["data"]['activity'];
+            $_SESSION["goal"] = $result["data"]['goal'];
+            
 
 			//Setting the cookies
 			if($rememberCookie == "true"){
 				setcookie("usernameCookie", $userName, time() + 3600 * 24 * 30);
 
 			}
-
 			echo json_encode($finalResponse);
 
 		}
@@ -67,7 +78,6 @@
 
 	function verifyRegistration(){
 
-        echo "debug";
 		$userFirstName = $_POST["firstname"];
 		$userLastName = $_POST["lastname"];
         $userName = $_POST["username"];
@@ -80,15 +90,12 @@
         $userHeight = $_POST["height"];
         $userActivity = $_POST["activity"];
         $userGoal = $_POST["goal"];
-
-        echo ($userActivity = $_POST["activity"]);
-
-		$result = registrationAction($userFirstName, $userLastName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
+        
+        $result = registrationAction($userFirstName, $userLastName,$userName, $userPassword, $userEmail, $userCountry, $userGender, $userAge, $userWeight, $userHeight, $userActivity, $userGoal);
 
 		if($result){
-
 			session_start();
-			$_SESSION['username'] = $userName;
+			$_SESSION["userName"] = $userName;
 			$_SESSION["fName"] = $userFirstName;
 			$_SESSION["lName"] = $userLastName;
 			$_SESSION["email"] = $userEmail;
@@ -101,9 +108,7 @@
             $_SESSION["goal"] = $userGoal;
 			
 			echo json_encode("New record created successfully");
-
 		}
-
 		else {
 			header("HTTP/1.1 406 User not registered ");
 			echo "Error: " . $sql . "<br>" . $conn->error;
@@ -118,15 +123,14 @@
 		session_start();
 	
 		if(isset($_SESSION["userName"])){
+            $finalResponse = array("username" => $_SESSION["userName"], 
+                          "fName" => $_SESSION["fName"],
+                                       "lName" => $_SESSION["lName"], "email" => $_SESSION["email"],
+                                      "gender" => $_SESSION["gender"], "age" => $_SESSION["age"], "country" => $_SESSION["country"],
+                                      "weight" => $_SESSION["weight"], "height" => $_SESSION["height"],
+                                        "activity" => $_SESSION["activity"], "goal" => $_SESSION["goal"]);
 
-			echo "<div class = perfil>";
-			echo "<p><b>USERNAME: </b>". $_SESSION["userName"] ."</p>";
-			echo "<p><b>NAME: </b>" .$_SESSION["fName"]. ' ' .$_SESSION["lName"]. "</p>";
-			echo "<p><b>EMAIL: </b>". $_SESSION["email"] ."</p>";
-			echo "<p><b>GENDER: </b>". $_SESSION["gender"] ."</p>";
-			echo "<p><b>COUNTRY: </b>". $_SESSION["country"] ."</p>";
-			echo "</div>";							
-			
+				echo json_encode($finalResponse);
 		}
 		else {
 			header("HTTP/1.1 406 Session has expired, you will be redirected to the login");
@@ -156,9 +160,6 @@
 		session_start();
 
 		if(isset($_SESSION["userName"])){
-
-
-
 			$user = $_SESSION["userName"];
 
 			$result = commentsAction($user);
@@ -167,11 +168,7 @@
 			if ($result["statusTxt"] == "SUCCESS") { 
 
 				for ($i = 0; $i < $size-1; $i++){
-			
-					echo "<div class = comment>";
-					echo "<h3>".$result[$i]['userName']."</h3>";
-					echo "<p>". $result[$i]['comment']."</p>";
-					echo "</div>";
+					echo "<div class = comment> <h3>".$result[$i]['userName']."</h3><p>". $result[$i]['comment']."</p></div>";
 				}	
 			}
 
@@ -221,9 +218,7 @@
 		if (isset($_SESSION["userName"])){
 
 			$user = $_SESSION["userName"];
-			$search = $_POST["searchName"];
-
-			$result = searchUser($user, $search); 
+			$result = favoriteFood($user); 
 
 			
 			if ($result["statusTxt"] == "SUCCESS") { 
@@ -247,38 +242,119 @@
 		}
 
 	}
+
+function searchFood(){
+
+            $food = $_POST["food"];
+            
+			$result = getFood($food);
+
+			$size = count($result);
+			if ($result["statusTxt"] == "SUCCESS") { 
+
+				for ($i = 0; $i < $size-1; $i++){
+                    $tmp = $result[$i]['name'];
+                    echo '<p><a href="#" onClick="setFood(\''.$tmp.'\')"><b>'.$tmp.'</b></a></p>';
+				}	
+			}
+            
+        }
+
+function findFood(){
+
+            $food = $_POST["food"];
+            
+			$result = getFoodInformation($food);
+
+			$size = count($result);
+			if ($result["statusTxt"] == "SUCCESS") { 
+
+                    $finalResponse = array("name" =>$result["data"]['name']);
+                echo json_encode($finalResponse);
+			}else {
+			header('HTTP/1.1 406 User not found');
+	        die(json_encode(array('message' => 'ERROR', 'code' => 1337)));
+		}
+            
+        }   
+
+		
+
+ 
+    function getFoodInfo(){
+        $food = $_POST["food"];
+        $result = getFoodInformation($food);
+
+			if ($result["statusTxt"] == "SUCCESS") { 
+                $finalResponse = 
+                    array("name" => $result["data"]["name"], 
+                          "measure" => $result["data"]["measure"],
+                                       "portion" => $result["data"]["portion"], "calories" => $result["data"]["calories"],
+                                      "fat" => $result["data"]["fat"], "carbs" => $result["data"]["carbs"],
+                                      "protein" => $result["data"]["protein"]);
+
+				echo json_encode($finalResponse);
+			}
+        else {
+			header('HTTP/1.1 406 User not found');
+	        die(json_encode(array('message' => 'ERROR', 'code' => 1337)));
+		}
+
+		}
+
+function findFavorites(){
+    session_start();
+		if (isset($_SESSION["userName"])){
+            $user = $_SESSION["userName"];
+            $result = favoriteFood($user);
+            $size = count($result);
+            
+			if ($result["statusTxt"] == "SUCCESS") { 
+
+				for ($i = 0; $i < $size-1; $i++){
+                    $tmp = $result[$i]['name'];
+					echo '<p><a href="#" onClick="setFood(\''.$tmp.'\')"><b>'.$tmp.'</b></a></p>';
+				}
+
+				echo json_encode($finalResponse);
+			}	
+        }else {
+			header("HTTP/1.1 406 Session has expired, you will be redirected to the login");
+			echo("Session has expired");
+		}
+    
+    
+}
+
+function addFood(){
+     	session_start();
+		if (isset($_SESSION["userName"])){
+            $name = $_POST["name"];
+            $type = $_POST["type"];
+            $brand = $_POST["brand"];
+            $portion = $_POST["portion"];
+            $measure = $_POST["measure"];
+            $calories = $_POST["calories"];
+            $fat = $_POST["fat"];
+            $carbs = $_POST["carbs"];
+            $protein = $_POST["protein"];
+            $result = insertFood($name,$type,$brand,$portion,
+                                $measure,$calories,$fat,$carbs,
+                                $protein)
+        	if($result){
+            echo json_encode("New record created successfully");
+        	}
+		
+			else {
+				header("HTTP/1.1 406 User not registered ");
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				die("food not able to be registered"); 
+			}
+		}			
+}
+
+    
+
+        
 	
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
